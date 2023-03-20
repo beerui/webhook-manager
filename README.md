@@ -42,13 +42,22 @@
 若需要执行的命令比较简单，可以使用`app2.command`这种形式替代
 
 ```bash
-#!/bin/bash
+#! /bin/bash
+WEB_PATH=/data/app1
+echo "开始构建"
+cd $WEB_PATH
+echo "拉取main分支的代码"
+git reset --hard origin/main
+git clean -f
+git pull
+git checkout main
+echo "检查权限"
 
-cd /data/project1
-git pull origin main
 # 建议手动进行安装 之后每一次只需要 npm run build即可
 npm install 
+
 npm run build
+echo "Finished."
 ```
 ### 注意：
 - 项目需要自己首先拉取到服务器中（有些可能没用权限,需要配置.）
