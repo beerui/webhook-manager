@@ -1,6 +1,6 @@
 # Webhook 自动部署 Auto Build With Config
 
-> 一个管理github的webhook自动部署项目
+一个管理github的webhook自动部署项目
 
 ## 开始 Start
 1. 在服务器中安装 `npm i @brewer/webhook-manager -g`
@@ -16,8 +16,8 @@
 > 建议使用pm2来启动项目
 
 ## config.json 配置
-> `app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yourdomin/webhook/app1`.
-> 我们会拿`app1`来跟`config.json`中的配置进行匹配。
+`app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yourdomin/webhook/app1`,
+我们会拿`app1`来跟`config.json`中的配置进行匹配
 
 ### config.json 基本示例
 ``` json
@@ -35,12 +35,11 @@
   }
 }
 ```
-> 每次修改完配置文件后，必需重启！
+每次修改完配置文件后，必需重启！
 
 ### deploy.sh 示例（必需）
-> 这个文件需要放在监听项目中的根目录，非webhook中的目录。
-
-> 若需要执行的命令比较简单，可以使用`app2.command`这种形式替代
+这个文件需要放在监听项目中的根目录，非webhook中的目录。
+若需要执行的命令比较简单，可以使用`app2.command`这种形式替代
 
 ```bash
 #!/bin/bash
@@ -57,7 +56,7 @@ npm run build
 
 
 ## `webhook`设置流程
-> 在github的某一个项目中按照以下步骤进行
+在github的某一个项目中按照以下步骤进行
 1. Settings
 2. Webhooks
 3. Add webhook
