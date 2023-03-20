@@ -16,7 +16,7 @@
 - 建议使用pm2来启动项目
 
 ## config.json 配置
-`app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yourdomin/webhook/app1`,
+`app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yoursite/webhook/app1`,
 我们会拿`app1`来跟`config.json`中的配置进行匹配
 
 ### config.json 基本示例
@@ -61,7 +61,7 @@ npm run build
 2. Webhooks
 3. Add webhook
 4. Content type ===> json
-5. Payload URL ===> `https://youdomin/webhook/app1`
+5. Payload URL ===> `https://yoursite/webhook/app1`
 6. Secret ===> 保持为空
 7. SSL verification ===> 若SSL验证失败可以暂时使用`Disable (not recommended)`
 8. Just the push event.
@@ -77,14 +77,14 @@ upstream webhook {
 
 server {
     listen 80;
-    server_name webhook.xxx.com;
+    server_name webhook.yoursite.com;
     
-    return 301 https://webhook.xxx.com$request_uri;
+    return 301 https://webhook.yoursite.com$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name  webhook.xxx.com;
+    server_name  webhook.yoursite.com;
 
     access_log /var/log/nginx/webhook_access.log;
     error_log /var/log/nginx/webhook_error.log;
