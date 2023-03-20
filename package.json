@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "node index.js",
-    "publish": "npm version patch && npm publish"
+    "publish": "npm version patch && npm publish && exit"
   },
   "homepage": "https://github.com/beerui/webhook-manager",
   "bugs": {
