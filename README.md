@@ -13,7 +13,18 @@
 ## 项目启动流程
 1. 读取配置中的文件
 2. 生成日志文件`webhook/logs`
-- 建议使用pm2来启动项目
+- 建议使用pm2来启动项目 `pm2 start brewer-webhook --name webhooks`
+```bash
+npm install pm2 -g  # 安装
+pm2 list            # 查看应用列表
+pm2 stop webhook    # 停止应用
+pm2 restart webhook # 重启应用
+pm2 delete webhook  # 删除应用
+pm2 logs webhook    # 查看日志 等同于`tail -f ./logs/webhook.log`
+
+pm2 startup         # 开机启动
+pm2 save            # 存入当前配置
+```
 
 ## config.json 配置
 `app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yoursite/webhook/app1`,
@@ -37,10 +48,11 @@
 ```
 每次修改完配置文件后，必需重启！
 
-### deploy.sh 示例（必需）
+### deploy.sh 示例
 这个文件需要放在监听项目中的根目录，非webhook中的目录。
 若需要执行的命令比较简单，可以使用`app2.command`这种形式替代
 
+- 
 ```bash
 #! /bin/bash
 WEB_PATH=/data/app1
@@ -61,7 +73,7 @@ echo "Finished."
 ```
 ### 注意：
 - 项目需要自己首先拉取到服务器中（有些可能没用权限,需要配置.）
-- 这个文件必需，但是可以为空。
+- 最好放在`deploy.sh`这里面进行管理。
 
 
 ## `webhook`设置流程
@@ -81,6 +93,7 @@ echo "Finished."
 
 `nginx`配置完成后可以使用`GET`请求`/webhook/health`接口来进行测试服务是否启动成功并且可以访问成功。
 若访问返回`health`则成功！
+
 ```
 upstream webhook {
     server 127.0.0.1:3200;
