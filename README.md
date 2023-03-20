@@ -87,7 +87,7 @@ echo "Finished."
 2. Webhooks
 3. Add webhook
 4. Content type ===> json
-5. Payload URL ===> `https://yoursite/webhook/` + app1
+5. Payload URL ===> `https://yoursite.com/webhook/` + app1
 6. Secret ===> 保持为空
 7. SSL verification ===> 若SSL验证失败可以暂时使用`Disable (not recommended)`
 8. Just the push event.
