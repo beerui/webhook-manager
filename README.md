@@ -1,27 +1,25 @@
-### Webhook 自动部署
+# Webhook 自动部署 Auto Build With Config
 
 > 一个管理github的webhook自动部署项目
 
-### 开始
+## 开始 Start
 1. 在服务器中安装 `npm i @brewer/webhook-manager -g`
-2. 在服务器目录下新建文件夹`mkdir webhook && cd webhook`
+2. 新建文件夹 `mkdir webhook && cd webhook`
 3. 在`webhook`文件夹中新建配置文件 `config.json`
 4. 配置完成后运行`brewer-webhook`
 5. 查看日志 `tail -f ./logs/webhook.log`
+6. 测试 `push`项目 查看日志中是否执行
 
-### 项目启动流程
+## 项目启动流程
 1. 读取配置中的文件
 2. 生成日志文件`webhook/logs`
 > 建议使用pm2来启动项目
 
-#### config.json 配置
-> app1,app2可以是项目名，但是必须是`github webhook`中的接口名。
-> 我们将运行一个node服务，用来接收来自github的推送。
+## config.json 配置
+> `app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yourdomin/webhook/app1`.
+> 我们会拿`app1`来跟`config.json`中的配置进行匹配。
 
-> 在接收到推送之后，会运行`app1.path`目录下的deploy.sh的命令。
-> 执行完毕后，会运行`app1.command`中的自定义命令。
-
-##### config.json 基本示例
+### config.json 基本示例
 ``` json
 {
   "port": 3200,                 // 启动的服务端口号
@@ -39,7 +37,7 @@
 ```
 > 每次修改完配置文件后，必需重启！
 
-#### deploy.sh 示例（必需）
+### deploy.sh 示例（必需）
 > 这个文件需要放在监听项目中的根目录，非webhook中的目录。
 
 > 若需要执行的命令比较简单，可以使用`app2.command`这种形式替代
@@ -53,17 +51,18 @@ git pull origin main
 npm install 
 npm run build
 ```
-> 1. 注意点：项目需要自己首先拉取到服务器中（有些可能没用权限,需要配置.）
-> 2. 这个文件必需，但是可以为空。
+### 注意：
+- 项目需要自己首先拉取到服务器中（有些可能没用权限,需要配置.）
+- 这个文件必需，但是可以为空。
 
 
-### `webhook`设置流程
+## `webhook`设置流程
 > 在github的某一个项目中按照以下步骤进行
 1. Settings
 2. Webhooks
 3. Add webhook
 4. Content type ===> json
-5. Payload URL ===> `https://你的域名/webhook/app1`
+5. Payload URL ===> `https://youdomin/webhook/app1`
 6. Secret ===> 保持为空
 7. SSL verification ===> 若SSL验证失败可以暂时使用`Disable (not recommended)`
 8. Just the push event.
@@ -73,7 +72,7 @@ npm run build
 ### `nginx`中的`webhook.conf`配置示例
 
 ```
-upstream beer-mini {
+upstream webhook {
     server 127.0.0.1:3200;
 }
 
@@ -106,3 +105,10 @@ server {
     }
 }
 ```
+
+## 如果你感兴趣 这是我们的运行流程
+- 我们将运行一个node服务，用来接收来自github的推送。
+- 当github接收到用户的push事件，就会推送到我们填写的地址。如：`webhook/app1`
+- 我们在接收到推送之后，会运行`app1.path`目录下的`deploy.sh`的命令。
+- 执行完毕后，会运行`app1.command`中的自定义命令,如果有的话。
+- 到此，我们的流程就结束了。
