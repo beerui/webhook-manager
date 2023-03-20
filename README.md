@@ -5,7 +5,7 @@
 ## 开始 Start
 1. 在服务器中全局安装 `npm i @brewer/webhook-manager -g`
 2. 为了规范和好管理，新建webhook-manager配置目录存放公共配置文件和日志 `mkdir webhook && cd webhook`
-3. 在`webhook`文件夹中新建配置文件 `touch config.json`.配置见下方`config.json`配置
+3. 在`webhookConfig`文件夹中新建配置文件 `touch config.json`.配置见下方`config.json`配置
 4. 根据下方`webhook设置流程`进行github的推送设置
 5. 以上配置完成后运行`brewer-webhook`进行服务启动
 6. 测试: 修改项目文件，`push`项目 查看日志中是否执行。
