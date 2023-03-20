@@ -1,14 +1,25 @@
 {
-  "name": "webhook-manager",
+  "name": "@brewer/webhook-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "一个管理github的webhook自动部署项目！",
   "main": "index.js",
+  "bin": {
+    "brewer-webhook": "./index.js"
+  },
   "scripts": {
     "dev": "node index.js"
   },
-  "keywords": [],
+  "homepage": "https://github.com/beerui/webhook-manager",
+  "bugs": {
+    "url": "https://github.com/beerui/BeerUi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/beerui/BeerUi.git"
+  },
+  "keywords": ["brewer", "webhook", "webhook manager", "github webhook"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
