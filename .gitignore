@@ -1,0 +1,27 @@
+.DS_Store
+node_modules/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.project
+.idea
+.hbuilderx
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+/test/logs/github-webhook.log
+/logs
+/project1
+/project2
+package-lock.json

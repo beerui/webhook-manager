@@ -1,0 +1,13 @@
+{
+  "port": 3002,
+  "app1": {
+    "name": "project1",
+    "path": "./project1",
+    "command": ""
+  },
+  "app2": {
+    "name": "project2",
+    "path": "./project2",
+    "command": "cd /g/2023/webhook-deploy-cli/test/project2 && git pull origin main && npm i && npm run build"
+  }
+}
