@@ -1,6 +1,6 @@
 {
   "name": "@brewer/webhook-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个管理github的webhook自动部署项目！",
   "main": "index.js",
   "bin": {
@@ -17,7 +17,12 @@
     "type": "git",
     "url": "git+ssh://git@github.com/beerui/BeerUi.git"
   },
-  "keywords": ["brewer", "webhook", "webhook manager", "github webhook"],
+  "keywords": [
+    "brewer",
+    "webhook",
+    "webhook manager",
+    "github webhook"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
