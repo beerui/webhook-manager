@@ -13,7 +13,7 @@
 ## 项目启动流程
 1. 读取配置中的文件
 2. 生成日志文件`webhook/logs`
-> 建议使用pm2来启动项目
+- 建议使用pm2来启动项目
 
 ## config.json 配置
 `app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yourdomin/webhook/app1`,
