@@ -27,7 +27,10 @@ const logger = winston.createLogger({
 
 // 中间件
 app.use(bodyParser.json());
-
+app.get('/webhook/health', (req, res) => {
+    logger.info(`======= received health =======`);
+    res.status(200).send('health');
+})
 // 路由
 app.post('/webhook/:project', (req, res) => {
     const project = req.params.project;

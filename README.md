@@ -70,6 +70,8 @@ npm run build
 
 ### `nginx`中的`webhook.conf`配置示例
 
+`nginx`配置完成后可以使用`GET`请求`/webhook/health`接口来进行测试服务是否启动成功并且可以访问成功。
+若访问返回`health`则成功！
 ```
 upstream webhook {
     server 127.0.0.1:3200;
