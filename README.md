@@ -3,12 +3,14 @@
 一个管理github的webhook自动部署项目
 
 ## 开始 Start
-1. 在服务器中安装 `npm i @brewer/webhook-manager -g`
-2. 新建文件夹 `mkdir webhook && cd webhook`
-3. 在`webhook`文件夹中新建配置文件 `config.json`
-4. 配置完成后运行`brewer-webhook`
-5. 查看日志 `tail -f ./logs/webhook.log`
-6. 测试 `push`项目 查看日志中是否执行
+1. 在服务器中全局安装 `npm i @brewer/webhook-manager -g`
+2. 为了规范和好管理，新建webhook-manager配置目录存放公共配置文件和日志 `mkdir webhook && cd webhook`
+3. 在`webhook`文件夹中新建配置文件 `touch config.json`.配置见下方`config.json`配置
+4. 根据下方`webhook设置流程`进行github的推送设置
+5. 以上配置完成后运行`brewer-webhook`进行服务启动
+6. 测试: 修改项目文件，`push`项目 查看日志中是否执行。
+
+- 查看日志 `tail -f ./logs/webhook.log`
 
 ## 项目启动流程
 1. 读取配置中的文件
@@ -27,8 +29,11 @@ pm2 save            # 存入当前配置
 ```
 
 ## config.json 配置
-`app1, app2`是项目名，但是必须是`github webhook`中的接口名。 如：`https://yoursite/webhook/app1`,
-我们会拿`app1`来跟`config.json`中的配置进行匹配
+`app1, app2`是`github webhook`中的接口名
+我们会监听以下接口：
+`https://yoursite/webhook/app1`,
+`https://yoursite/webhook/app2`,
+我们会拿`app1`来跟`config.json`中的配置进行匹配,获取到项目路径和配置。
 
 ### config.json 基本示例
 ``` json
@@ -36,12 +41,12 @@ pm2 save            # 存入当前配置
   "port": 3200,                 // 启动的服务端口号
   "app1": {                     // 项目一：app1是webhook添加的接口地址
     "name": "project1",         // 日志中会输出名称，预留的可以是pm2启动的服务名称
-    "path": "./project1",       // 项目路径（真实地址要写绝对路径）
+    "path": "/project1dir",     // 项目路径（真实地址要写绝对路径）
     "command": ""               // 额外运行的命令
   },
   "app2": {
     "name": "project2",
-    "path": "./project2",
+    "path": "/project2dir",
     "command": "cd /data/project2 && git pull origin main && npm i && npm run build"
   }
 }
