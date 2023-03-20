@@ -135,7 +135,8 @@ server {
 ```
 
 ## 如果你感兴趣 这是我们的运行流程
-- 我们将运行一个node服务，用来接收来自github的推送。
+- 我们将运行一个node服务,启动前缀为`webhook`的路由来拦截，用来接收来自github的推送。
+- 当github地址设置成`https://yoursite.com/webhook/app1`时，我们将会通过webhook的前缀拦截到参数`app1`
 - 当github接收到用户的push事件，就会推送到我们填写的地址。如：`webhook/app1`
 - 我们在接收到推送之后，会运行`app1.path`目录下的`deploy.sh`的命令。
 - 执行完毕后，会运行`app1.command`中的自定义命令,如果有的话。
