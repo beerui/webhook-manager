@@ -7,7 +7,8 @@
     "brewer-webhook": "./index.js"
   },
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "publish": "npm version patch && npm publish"
   },
   "homepage": "https://github.com/beerui/webhook-manager",
   "bugs": {
