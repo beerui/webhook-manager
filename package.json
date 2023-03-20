@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/beerui/BeerUi.git"
+    "url": "git+ssh://git@github.com:beerui/webhook-manager.git"
   },
   "keywords": [
     "brewer",
