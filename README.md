@@ -49,7 +49,7 @@
 部署日志可以在当前目录下的 `./logs/webhook.log` 中查看。
 
 ### 4. 根据下方`webhook设置流程`进行github的推送设置
-在代码托管平台（如 Github、Gitlab、Bitbucket）中为每个项目配置 Webhook。Webhook 地址为 http://your-server-url:3200/webhook/:project，其中 :project 为项目名称，对应 config.json 中定义的项目名称。
+在代码托管平台（如 Github、Gitlab、Bitbucket）中为每个项目配置 Webhook。Webhook 地址为 http://your-server-url:3200/webhook/:project 其中 :project 为项目名称，对应 config.json 中定义的项目名称。
 
 ### 5. 检测webhook是否设置正确
 修改项目文件，`push`项目， 查看github中的请求和`logs`日志中的报错并解决。

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #canvas {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  // 可配置参数
+  let lineWidth = 4; // 线条宽度
+  let lineLength = 150; // 线条长度
+  let lineCount = 30; // 线条数量
+  let lineColor = '#ffffff'; // 线条颜色
+  let speed = 10; // 扫过速度
+  let scanColor = '#ffffff'; // 扫光颜色
+  let scanWidth = 50; // 扫光宽度
+
+  // 创建线条对象
+  class Line {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.length = lineLength;
+      this.speed = speed;
+      this.scanWidth = scanWidth;
+      this.scanColor = scanColor;
+    }
+
+    // 绘制线条
+    draw() {
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x + this.length, this.y);
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = lineColor;
+      ctx.stroke();
+
+      // 创建渐变对象
+      const gradient = ctx.createLinearGradient(
+              this.x - this.scanWidth / 2,
+              this.y,
+              this.x + this.length + this.scanWidth / 2,
+              this.y
+      );
+      gradient.addColorStop(0, 'transparent');
+      gradient.addColorStop(0.5, this.scanColor);
+      gradient.addColorStop(1, 'transparent');
+
+      // 绘制扫光
+      ctx.beginPath();
+      ctx.moveTo(this.x - this.scanWidth / 2, this.y);
+      ctx.lineTo(this.x + this.length + this.scanWidth / 2, this.y);
+      ctx.lineWidth = this.scanWidth;
+      ctx.strokeStyle = gradient;
+      ctx.stroke();
+    }
+
+    // 更新线条位置
+    update() {
+      this.x -= this.speed;
+      if (this.x < -this.length) {
+        this.x = width;
+      }
+    }
+  }
+
+  // 创建线条数组
+  const lines = [];
+  for (let i = 0; i < lineCount; i++) {
+    const x = Math.random() * width;
+    const y = Math.random() * height;
+    lines.push(new Line(x, y));
+  }
+
+  // 创建循环函数
+  function loop() {
+    // 清除画布
+    ctx.clearRect(0, 0, width, height);
+
+    // 更新线条位置
+    lines.forEach(line => {
+      line.update();
+      line.draw();
+    });
+
+    // 循环调用函数
+    requestAnimationFrame(loop);
+  }
+
+  // 启动循环函数
+  loop();
+
+</script>
+</body>
+</html>
