@@ -42,7 +42,7 @@
 在文件夹中新建：`config.json`。
 
 ### 2. 启动服务
-在`webhookConfig`文件夹中运行`brewer-webhook`进行服务启动。日志也将自动生成在此目录下。
+在`webhookConfig`文件夹中运行`brewer-webhook`进行服务启动。日志也将自动生成在此目录下。[API示例](./API.md)
 
 ### 3. 检查服务状态
 访问 http://your-server-url:3200/webhook/health 可以检查服务是否正常运行。如果返回 health 则表示服务正常。
